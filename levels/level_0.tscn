@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2jpvpjyj7bky"]
+
+[ext_resource type="Script" path="res://levels/level_0.gd" id="1_d0aal"]
+[ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="2_e0nnw"]
+
+[node name="level_tutorial" type="Node"]
+script = ExtResource("1_d0aal")
+level_name = "Tutorial"
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(896, 384, 896, 512, -128, 512, -128, 0, -64, 0, -64, 384)
+
+[node name="player" parent="." instance=ExtResource("2_e0nnw")]
+position = Vector2(48, 336)
