@@ -6,6 +6,8 @@ extends CharacterBody2D
 ## The Player's current state. The Player will always start as [Idle]
 var current_state: State = Idle.new(self)
 
+@onready var animator: AnimatedSprite2D = $AnimatedSprite2D
+
 
 func _unhandled_input(event) -> void:
 	var _new_state: State = current_state.handle_input(event)
@@ -32,7 +34,17 @@ func _physics_process(delta) -> void:
 	if OS.is_debug_build():
 		DebugOverlay.update_player_velocity(velocity)
 	
+	animator.change_direction(input_direction.x)
+	
 	move_and_slide()
+	
+	var collision = get_last_slide_collision()
+	if collision:
+		var collider = collision.get_collider()
+		var above: bool = true if collider.get_position().y > position.y + 8 else false
+		if collider is Enemy and above:
+			collider.die()
+			velocity.y = State.JUMP_SPEED / 2.0
 
 
 ## Handles the transition from one [State] to another. First, the [method State.exit] method of the [member current_state] is called and then freed from memory. 
@@ -41,3 +53,14 @@ func change_state(to: State) -> void:
 	current_state.free()
 	current_state = to
 	current_state.enter()
+	animator.change_animation(to)
+
+
+func entered_water() -> void:
+	change_state(Swimming.new(self))
+
+
+func exited_water() -> void:
+	var new_state = Jumping.new(self)
+	new_state.can_double_jump = false
+	change_state(new_state)

@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://daoe5jubpxtbb"]
+
+[ext_resource type="Script" path="res://levels/level_tutorial.gd" id="1_vb7ma"]
+[ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="2_lvhet"]
+[ext_resource type="Texture2D" uid="uid://rqoe0t07rqrr" path="res://assets/tutoriallevel.png" id="2_q4ndn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdc58"]
+size = Vector2(32, 380)
+
+[node name="level_tutorial" type="Node"]
+script = ExtResource("1_vb7ma")
+hub = "res://levels/level_hub.tscn"
+level_name = "Tutorial"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q4ndn")
+centered = false
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(960, 200, 960, 512, -128, 512, -128, 0, 0, 0, 0, 392, 336, 392, 336, 344, 568, 344, 856, 200)
+
+[node name="player" parent="." instance=ExtResource("2_lvhet")]
+position = Vector2(48, 374)
+
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(896, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
+shape = SubResource("RectangleShape2D_xdc58")
+
+[node name="Instructions" type="CanvasLayer" parent="."]
+
+[node name="VBox" type="VBoxContainer" parent="Instructions"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Top" type="Label" parent="Instructions/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Middle" type="Label" parent="Instructions/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Bottom" type="Label" parent="Instructions/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

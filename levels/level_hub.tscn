@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd6vf0ebolmf2"]
+[gd_scene load_steps=6 format=3 uid="uid://dd6vf0ebolmf2"]
 
-[ext_resource type="Texture2D" uid="uid://cw6vjc6w18g2v" path="res://assets/mockup.png" id="1_6586q"]
+[ext_resource type="Script" path="res://levels/level_hub.gd" id="1_ojcw2"]
+[ext_resource type="Texture2D" uid="uid://cxjsxyqr0euh1" path="res://assets/sunshrine.png" id="2_kgg15"]
 [ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="2_s30e2"]
 [ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="3_lpcig"]
+[ext_resource type="PackedScene" uid="uid://xsvwk8cpi1l1" path="res://entities/enemies/dragon.tscn" id="9_bvbl5"]
 
 [node name="Hub" type="Node"]
+script = ExtResource("1_ojcw2")
+level_name = "The Shrine"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.3375, 1.33333)
-texture = ExtResource("1_6586q")
+texture = ExtResource("2_kgg15")
 centered = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -17,16 +20,23 @@ centered = false
 polygon = PackedVector2Array(-16, 384, 872, 384, 872, 0, 960, 0, 960, 512, -64, 512, -64, 0, -16, 0)
 
 [node name="player" parent="." instance=ExtResource("2_s30e2")]
-position = Vector2(24, 352)
+position = Vector2(24, 360)
 
-[node name="Portal" parent="." instance=ExtResource("3_lpcig")]
-position = Vector2(104, 368)
+[node name="Portal1" parent="." instance=ExtResource("3_lpcig")]
+position = Vector2(104, 320)
+desitnation = "res://levels/level_1.tscn"
 
 [node name="Portal2" parent="." instance=ExtResource("3_lpcig")]
-position = Vector2(232, 368)
+position = Vector2(232, 320)
+desitnation = "res://levels/level_2.tscn"
 
 [node name="Portal3" parent="." instance=ExtResource("3_lpcig")]
-position = Vector2(648, 368)
+position = Vector2(648, 320)
+desitnation = "res://levels/level_3.tscn"
 
 [node name="Portal4" parent="." instance=ExtResource("3_lpcig")]
-position = Vector2(776, 368)
+position = Vector2(784, 320)
+desitnation = "res://levels/level_4.tscn"
+
+[node name="Dragon" parent="." instance=ExtResource("9_bvbl5")]
+position = Vector2(427, 120)

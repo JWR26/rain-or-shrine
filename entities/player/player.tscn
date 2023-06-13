@@ -1,12 +1,146 @@
-[gd_scene load_steps=3 format=3 uid="uid://c48cyk6sl6a33"]
+[gd_scene load_steps=21 format=3 uid="uid://c48cyk6sl6a33"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_qpbtd"]
+[ext_resource type="Texture2D" uid="uid://doxaf3d65qa1c" path="res://assets/HorusSprite.png" id="2_34omk"]
+[ext_resource type="Texture2D" uid="uid://c4ctqh3jqycu7" path="res://assets/HorusRunCycle.png" id="3_64a3u"]
+[ext_resource type="Script" path="res://entities/player/player_animator.gd" id="4_381a6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8vgu"]
-size = Vector2(32, 40)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1scu8"]
+radius = 16.0
+height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d4an"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(432, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26e0n"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(96, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjj66"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(0, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xixi"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(48, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0815c"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(96, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs6rq"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(144, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey1gm"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(192, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls4iq"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(240, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r70tb"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(288, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2um56"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(336, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgr7g"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(384, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii7o4"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(432, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vibjw"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(480, 0, 48, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax53j"]
+atlas = ExtResource("3_64a3u")
+region = Rect2(528, 0, 48, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_544hq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7d4an")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_34omk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26e0n")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjj66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xixi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0815c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs6rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey1gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls4iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r70tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2um56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgr7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii7o4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vibjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax53j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_qpbtd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_a8vgu")
+shape = SubResource("CapsuleShape2D_1scu8")
+debug_color = Color(0.203922, 0.639216, 0, 0.784314)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_544hq")
+animation = &"fall"
+script = ExtResource("4_381a6")

@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://dc3qgiot7wsmy"]
+[gd_scene load_steps=2 format=3 uid="uid://dc3qgiot7wsmy"]
+
+[ext_resource type="Script" path="res://levels/level_2.gd" id="1_wc643"]
 
 [node name="Level2" type="Node"]
+script = ExtResource("1_wc643")
+level_name = "Untitles World 2"

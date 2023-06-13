@@ -9,6 +9,8 @@ func physics_update(_delta: float, _dir: Vector2) -> State:
 	
 	player.velocity.y += GRAVITY * _delta
 	
+	player.velocity.y = clamp(player.velocity.y, JUMP_SPEED, -JUMP_SPEED)
+	
 	_calculate_horizontal_velocity(_delta, _dir)
 	
 	player.move_and_slide()

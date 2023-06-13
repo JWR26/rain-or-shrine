@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xsvwk8cpi1l1"]
+
+[ext_resource type="Texture2D" uid="uid://b0hxa3f71up7k" path="res://assets/dragonhead.png" id="1_a3mtn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i40wj"]
+radius = 80.0
+
+[node name="Dragon" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i40wj")
+debug_color = Color(0.988235, 0, 0.313726, 0.784314)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_a3mtn")
+offset = Vector2(12, -12)

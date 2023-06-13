@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://c1ef6dva8n108"]
+
+[ext_resource type="Script" path="res://entities/enemies/cactus_bat.gd" id="1_32f2u"]
+[ext_resource type="Texture2D" uid="uid://coxugm81e53mr" path="res://assets/CactusBatFlying.png" id="2_y0gnf"]
+[ext_resource type="Texture2D" uid="uid://c2qqkeekqkh0k" path="res://assets/CactusBat.png" id="3_kogdo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pikp"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bnajf"]
+radius = 120.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpev0"]
+atlas = ExtResource("2_y0gnf")
+region = Rect2(84, 0, 42, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu5sb"]
+atlas = ExtResource("2_y0gnf")
+region = Rect2(0, 0, 42, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyt0u"]
+atlas = ExtResource("2_y0gnf")
+region = Rect2(42, 0, 42, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4iju"]
+atlas = ExtResource("2_y0gnf")
+region = Rect2(84, 0, 42, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qe21"]
+atlas = ExtResource("2_y0gnf")
+region = Rect2(126, 0, 42, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rxgv"]
+atlas = ExtResource("3_kogdo")
+region = Rect2(0, 0, 42, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ei57m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpev0")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu5sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyt0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4iju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qe21")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rxgv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="CactusBat" type="CharacterBody2D"]
+script = ExtResource("1_32f2u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0pikp")
+debug_color = Color(1, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bnajf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ei57m")
+animation = &"die"
+autoplay = "idle"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

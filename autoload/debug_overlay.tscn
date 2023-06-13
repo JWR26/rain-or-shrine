@@ -12,6 +12,7 @@ script = ExtResource("1_ds6qe")
 
 [node name="CurrentState" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CurrentState"]
 layout_mode = 2
@@ -20,8 +21,12 @@ text = "Current State: "
 [node name="State" type="Label" parent="CurrentState"]
 layout_mode = 2
 
-[node name="RobotVelocity" type="Label" parent="."]
+[node name="PlayerVelocity" type="Label" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="CurrentLevel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Artifacts" type="Label" parent="."]
 layout_mode = 2

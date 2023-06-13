@@ -10,10 +10,17 @@ func _ready():
 func update_current_state(state: String) -> void:
 	current_state.set_text(state)
 
+
 func update_player_velocity(value: Vector2) -> void:
-	var s: String = "Robot Velocity\n   Y: {0} \n   X: {1}"
-	$RobotVelocity.set_text(s.format([value.y, value.x]))
+	var s: String = "Velocity Y: {0}, X: {1}"
+	$PlayerVelocity.set_text(s.format([value.y, value.x]))
 
 
-func display_current_level(str: String) -> void:
-	$Label.set_text(str)
+func display_current_level(l: String) -> void:
+	var s: String = "Currnt level: {0}"
+	$CurrentLevel.set_text(s.format([l]))
+
+
+func update_artifact_status() -> void:
+	var s: String = "Artifact Collected 1: {0}, 2: {1}, 3: {2}, 4: {3}"
+	$Artifacts.set_text(s.format(Globals.get_artifact_status()))

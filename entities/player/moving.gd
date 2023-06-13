@@ -6,9 +6,6 @@ extends State
 func handle_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("jump"):
 		return Jumping.new(player)
-	if Input.is_action_just_pressed("move_down"):
-		return Dropping.new(player)
-	
 	return super.handle_input(_event)
 
 

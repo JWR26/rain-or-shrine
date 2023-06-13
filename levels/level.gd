@@ -7,5 +7,5 @@ extends Node
 func _ready() -> void:
 	if OS.is_debug_build():
 		DebugOverlay.display_current_level(level_name)
-
+		DebugOverlay.update_artifact_status()
 

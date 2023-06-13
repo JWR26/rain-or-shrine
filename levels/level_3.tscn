@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqfdy6o5gnggb"]
+
+[ext_resource type="Script" path="res://levels/level_3.gd" id="1_1ddr2"]
+[ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="2_1d0a2"]
+[ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="3_jiues"]
+[ext_resource type="PackedScene" uid="uid://usupq5fhtujf" path="res://entities/artifact/artifact.tscn" id="4_2era1"]
+[ext_resource type="PackedScene" uid="uid://ccnsnw0rpk5ci" path="res://entities/enemies/fish.tscn" id="5_0mknl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s24qs"]
+size = Vector2(960, 432)
+
+[node name="Level3" type="Node"]
+script = ExtResource("1_1ddr2")
+level_name = "Untitled World 3"
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(-64, 0, -16, 0, -16, 464, 512, 464, 704, 448, 872, 448, 872, -24, -16, -24, -16, 0, -64, 0, -64, -64, 896, -64, 896, 512, -64, 512)
+
+[node name="Portal" parent="." instance=ExtResource("2_1d0a2")]
+position = Vector2(832, 40)
+desitnation = "res://levels/level_hub.tscn"
+
+[node name="player" parent="." instance=ExtResource("3_jiues")]
+position = Vector2(784, 48)
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor2"]
+polygon = PackedVector2Array(672, 64, 672, 96, 832, 192, 872, 192, 872, 64, 768, 64)
+
+[node name="Floor3" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor3"]
+polygon = PackedVector2Array(576, 96, 576, 64, 320, 64, 320, 96, 384, 128, 512, 128)
+
+[node name="Floor4" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor4"]
+polygon = PackedVector2Array(64, 128, 288, -24, -16, -24, -16, 128)
+
+[node name="Floor5" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor5"]
+position = Vector2(0, 48)
+polygon = PackedVector2Array(384, 368, 272, 336, 128, 352, 192, 320, 320, 320, 368, 336)
+
+[node name="Floor6" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor6"]
+position = Vector2(0, 32)
+polygon = PackedVector2Array(384, 224, 256, 208, 128, 128, 256, 160, 384, 176, 448, 224)
+
+[node name="Floor7" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor7"]
+position = Vector2(0, 32)
+polygon = PackedVector2Array(128, 288, -16, 328, -16, 192, 128, 224)
+
+[node name="Floor8" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor8"]
+position = Vector2(0, 32)
+polygon = PackedVector2Array(704, 224, 640, 192, 576, 224, 576, 288, 672, 320)
+
+[node name="Floor9" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor9"]
+position = Vector2(0, 32)
+polygon = PackedVector2Array(872, 224, 768, 248, 832, 288, 832, 352, 704, 416, 872, 416)
+
+[node name="Water" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+position = Vector2(416, 296)
+shape = SubResource("RectangleShape2D_s24qs")
+
+[node name="Artifact" parent="." instance=ExtResource("4_2era1")]
+position = Vector2(256, 416)
+
+[node name="fish" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(448, 448)
+
+[node name="fish2" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(256, 288)
+start_direction = 1
+
+[node name="fish3" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(128, 416)
+start_direction = 1
+
+[node name="fish4" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(64, 192)
+start_direction = 1
+
+[node name="fish5" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(320, 160)
+start_direction = 1
+
+[node name="fish6" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(544, 192)
+
+[node name="fish7" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(448, 320)
+
+[node name="fish8" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(672, 400)
+start_direction = 1
+
+[node name="fish9" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(800, 224)
+start_direction = 1
+
+[node name="fish10" parent="." instance=ExtResource("5_0mknl")]
+position = Vector2(768, 344)
+
+[connection signal="body_entered" from="Water" to="." method="_on_water_body_entered"]
+[connection signal="body_exited" from="Water" to="." method="_on_water_body_exited"]

@@ -1,3 +1,129 @@
-[gd_scene format=3 uid="uid://dhr3rydnto6dl"]
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://levels/level_1.gd" id="1_6i1gw"]
+[ext_resource type="Texture2D" uid="uid://dvm1bo4onhnym" path="res://assets/Cave.png" id="2_aulqw"]
+[ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="3_xk8ng"]
+[ext_resource type="PackedScene" uid="uid://usupq5fhtujf" path="res://entities/artifact/artifact.tscn" id="4_3w53i"]
+[ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="4_qqwoq"]
+[ext_resource type="PackedScene" uid="uid://c1ef6dva8n108" path="res://entities/enemies/cactus_bat.tscn" id="5_q4la6"]
 
 [node name="Level1" type="Node"]
+script = ExtResource("1_6i1gw")
+level_name = "Untitled World 1"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aulqw")
+centered = false
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(0, 448, 856, 448, 856, 0, 896, 0, 896, 512, -64, 512, -64, 0, 0, 0)
+
+[node name="player" parent="." instance=ExtResource("4_qqwoq")]
+position = Vector2(128, 432)
+
+[node name="Portal" parent="." instance=ExtResource("3_xk8ng")]
+position = Vector2(64, 384)
+desitnation = "res://levels/level_hub.tscn"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(96, 0)
+polygon = PackedVector2Array(192, 336, 288, 320, 384, 320, 384, 368, 288, 384, 192, 368)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(88, -64)
+polygon = PackedVector2Array(520, 416, 768, 456, 768, 320, 520, 368)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-512, -144)
+polygon = PackedVector2Array(512, 384, 640, 400, 640, 368, 576, 352, 512, 352)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D5"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-512, -160)
+polygon = PackedVector2Array(1368, 352, 1120, 256, 1248, 224, 1368, 224)
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-512, -160)
+polygon = PackedVector2Array(512, 256, 512, 160, 960, 160)
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D7"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-528, -160)
+polygon = PackedVector2Array(768, 336, 768, 320, 832, 320, 832, 336, 816, 344, 784, 344)
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D8"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-336, -192)
+polygon = PackedVector2Array(768, 336, 768, 320, 832, 320, 832, 336, 816, 344, 784, 344)
+
+[node name="Artifact" parent="." instance=ExtResource("4_3w53i")]
+position = Vector2(800, 48)
+number = 0
+
+[node name="enemy_one" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(312, 384)
+
+[node name="enemy_one16" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(456, 384)
+
+[node name="enemy_one2" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(24, 256)
+
+[node name="enemy_one3" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(88, 264)
+
+[node name="enemy_one4" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(56, 96)
+
+[node name="enemy_one5" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(120, 80)
+
+[node name="enemy_one6" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(232, 56)
+
+[node name="enemy_one7" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(280, 48)
+
+[node name="enemy_one8" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(392, 24)
+
+[node name="enemy_one9" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(432, 16)
+
+[node name="enemy_one10" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(624, 112)
+
+[node name="enemy_one11" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(696, 144)
+
+[node name="enemy_one12" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(760, 168)
+
+[node name="enemy_one13" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(816, 192)
+
+[node name="enemy_one14" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(640, 368)
+
+[node name="enemy_one15" parent="." instance=ExtResource("5_q4la6")]
+position = Vector2(720, 384)

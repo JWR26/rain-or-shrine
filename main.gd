@@ -1,6 +1,6 @@
 extends Control
 
-@export var main_menu: PackedScene
+@export var main_menu: String
 
 func _ready() -> void:
-	get_tree().change_scene_to_packed(main_menu)
+	SceneChanger.change_scene(main_menu)

@@ -2,11 +2,10 @@ class_name State
 
 extends Node
 
-const ACCELERATION = 400
-const GRAVITY = 200
-const WALK_SPEED = 120
-const RUN_SPEED = 240
-const JUMP_SPEED = -200
+const ACCELERATION = 4000
+const GRAVITY = 1000
+const WALK_SPEED = 200
+const JUMP_SPEED = -400
 
 
 var player: Player
@@ -43,8 +42,5 @@ func _calculate_horizontal_velocity(_delta: float, _dir: Vector2) -> void:
 	
 	player.velocity.x += _dir.x * ACCELERATION * _delta
 	
-	if Input.is_action_pressed("sprint"):
-		player.velocity.x = clamp(player.velocity.x, -RUN_SPEED, RUN_SPEED)
-	else:
-		player.velocity.x = clamp(player.velocity.x, -WALK_SPEED, WALK_SPEED)
+	player.velocity.x = clamp(player.velocity.x, -WALK_SPEED, WALK_SPEED)
 
