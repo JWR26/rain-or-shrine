@@ -1,19 +1,11 @@
-class_name Enemy
+class_name CactusBat
 
-extends CharacterBody2D
-
-enum STATE {
-	IDLE,
-	MOVE_TO,
-	DEAD,
-}
+extends Enemy
 
 const SPEED: float = 120
-const GRAVITY = 360
 
 var p: Player = null
 
-var current_state: STATE = STATE.IDLE
 var direction: Vector2 = Vector2.ZERO
 
 

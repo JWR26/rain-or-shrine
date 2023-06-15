@@ -6,10 +6,16 @@ extends CharacterBody2D
 ## The Player's current state. The Player will always start as [Idle]
 var current_state: State = Idle.new(self)
 
+@export var projectile: PackedScene
+
 @onready var animator: AnimatedSprite2D = $AnimatedSprite2D
 
 
 func _unhandled_input(event) -> void:
+	if Input.is_action_just_pressed("cast") and $CastTimer.is_stopped():
+		cast()
+		return
+	
 	var _new_state: State = current_state.handle_input(event)
 	if _new_state:
 		change_state(_new_state)
@@ -42,7 +48,7 @@ func _physics_process(delta) -> void:
 	if collision:
 		var collider = collision.get_collider()
 		var above: bool = true if collider.get_position().y > position.y + 8 else false
-		if collider is Enemy and above:
+		if collider is CactusBat and above:
 			collider.die()
 			velocity.y = State.JUMP_SPEED / 2.0
 
@@ -64,3 +70,13 @@ func exited_water() -> void:
 	var new_state = Jumping.new(self)
 	new_state.can_double_jump = false
 	change_state(new_state)
+
+
+func cast() -> void:
+	var dir = Vector2.LEFT if $AnimatedSprite2D.flip_h else Vector2.RIGHT
+	var p = projectile.instantiate()
+	p.add_collision_exception_with(self)
+	$ProjectileContainer.add_child(p)
+	p.set_global_position(global_position)
+	p.direction = dir
+	$CastTimer.start(0.6)

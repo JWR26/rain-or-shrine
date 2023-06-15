@@ -1,7 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2lt2bj1t00a0"]
+[gd_scene load_steps=6 format=3 uid="uid://c2lt2bj1t00a0"]
 
 [ext_resource type="Script" path="res://levels/level_4.gd" id="1_703lc"]
+[ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="2_4qbvc"]
+[ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="3_fu8tj"]
+[ext_resource type="PackedScene" uid="uid://usupq5fhtujf" path="res://entities/artifact/artifact.tscn" id="4_ghspd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g087"]
+size = Vector2(2944, 496)
 
 [node name="Level4" type="Node"]
 script = ExtResource("1_703lc")
 level_name = "Untitles World 4"
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Floor"]
+position = Vector2(168, 464)
+polygon = PackedVector2Array(176, -16, 152, 48, 368, 48, 344, -16)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Floor"]
+position = Vector2(160, 128)
+polygon = PackedVector2Array(184, -32, 224, -16, 312, -16, 352, -32)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(448, 760)
+shape = SubResource("RectangleShape2D_0g087")
+
+[node name="player" parent="." instance=ExtResource("2_4qbvc")]
+position = Vector2(384, 432)
+
+[node name="Portal" parent="." instance=ExtResource("3_fu8tj")]
+position = Vector2(464, 384)
+desitnation = "res://levels/level_hub.tscn"
+
+[node name="Artifact" parent="." instance=ExtResource("4_ghspd")]
+position = Vector2(416, 384)
+number = 3
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

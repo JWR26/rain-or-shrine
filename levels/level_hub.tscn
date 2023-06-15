@@ -19,9 +19,6 @@ centered = false
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-16, 384, 872, 384, 872, 0, 960, 0, 960, 512, -64, 512, -64, 0, -16, 0)
 
-[node name="player" parent="." instance=ExtResource("2_s30e2")]
-position = Vector2(24, 360)
-
 [node name="Portal1" parent="." instance=ExtResource("3_lpcig")]
 position = Vector2(104, 320)
 desitnation = "res://levels/level_1.tscn"
@@ -39,4 +36,8 @@ position = Vector2(784, 320)
 desitnation = "res://levels/level_4.tscn"
 
 [node name="Dragon" parent="." instance=ExtResource("9_bvbl5")]
-position = Vector2(427, 120)
+position = Vector2(448, 344)
+hp = null
+
+[node name="player" parent="." instance=ExtResource("2_s30e2")]
+position = Vector2(24, 360)

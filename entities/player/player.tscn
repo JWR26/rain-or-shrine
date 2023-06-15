@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://c48cyk6sl6a33"]
+[gd_scene load_steps=22 format=3 uid="uid://c48cyk6sl6a33"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_qpbtd"]
 [ext_resource type="Texture2D" uid="uid://doxaf3d65qa1c" path="res://assets/HorusSprite.png" id="2_34omk"]
+[ext_resource type="PackedScene" uid="uid://dehe61p5qpbq1" path="res://entities/player/projectile.tscn" id="2_thhpy"]
 [ext_resource type="Texture2D" uid="uid://c4ctqh3jqycu7" path="res://assets/HorusRunCycle.png" id="3_64a3u"]
 [ext_resource type="Script" path="res://entities/player/player_animator.gd" id="4_381a6"]
 
@@ -135,6 +136,7 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_qpbtd")
+projectile = ExtResource("2_thhpy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_1scu8")
@@ -144,3 +146,10 @@ debug_color = Color(0.203922, 0.639216, 0, 0.784314)
 sprite_frames = SubResource("SpriteFrames_544hq")
 animation = &"fall"
 script = ExtResource("4_381a6")
+
+[node name="CastTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.6
+one_shot = true
+
+[node name="ProjectileContainer" type="Node" parent="."]
