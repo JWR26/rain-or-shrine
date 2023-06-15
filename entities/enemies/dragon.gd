@@ -2,17 +2,19 @@ class_name  Dragon
 
 extends Enemy
 
-const MAX_HP: int = 4
+const SPEED: float = 149.2
+const CHARGE_SPEED: float = 447.6
 
-const TOP_CENTER = Vector2(427, 120)
-const BOTTOM_RIGHT = Vector2(800, 344)
-const BOTTOM_LEFT = Vector2(54, 344)
+const TOP_CENTER = Vector2(427, 128)
+const BOTTOM_RIGHT = Vector2(800, 340)
+const LEFT = 54
+const RIGHT = 800
 
 enum PHASE{
 	IDLE,
 	FIRE_DOWN,
-	CHARGE,
 	FIRE_SIDE,
+	CHARGE,
 	DEAD,
 }
 
@@ -20,23 +22,61 @@ var current_phase: PHASE = PHASE.IDLE
 
 var tween: Tween
 
+@export var player: Node
+
 
 func _ready() -> void:
-	hp = MAX_HP
+	next_phase()
 	set_health_bar()
 	position = TOP_CENTER
 
 
 func _physics_process(delta: float) -> void:
+	if current_phase == PHASE.IDLE:
+		return
+	
 	if current_state == STATE.DEAD:
 		velocity.y += GRAVITY * delta
 	
+	if current_phase == PHASE.FIRE_DOWN:
+		if position.x < LEFT:
+			velocity.x = SPEED
+		elif position.x > RIGHT:
+			velocity.x = -SPEED
+		elif velocity == Vector2.ZERO:
+			velocity.x = SPEED
+		else:
+			pass
+	
+	if current_phase == PHASE.CHARGE:
+		velocity.x = -CHARGE_SPEED
+		if position.x < LEFT:
+			velocity = Vector2.ZERO
+			next_phase()
 	
 	move_and_slide()
 
 
 func next_phase() -> void:
-	
+	print("next phase")
+	if current_phase == PHASE.IDLE and Globals.all_artifacts_collected():
+		current_phase = PHASE.FIRE_DOWN
+		$PhaseTimer.start(10.0)
+	elif current_phase == PHASE.FIRE_DOWN:
+		velocity = Vector2.ZERO
+		current_phase = PHASE.FIRE_SIDE
+		var phase_tween = get_tree().create_tween()
+		phase_tween.tween_property(self, "position", BOTTOM_RIGHT, 2.0).set_trans(Tween.TRANS_CUBIC).set_delay(0.5)
+		$PhaseTimer.start(4.0)
+	elif current_phase == PHASE.FIRE_SIDE:
+		velocity = Vector2.ZERO
+		current_phase = PHASE.CHARGE
+	elif current_phase == PHASE.CHARGE:
+		velocity = Vector2.ZERO
+		current_phase = PHASE.IDLE
+		var phase_tween = get_tree().create_tween()
+		phase_tween.tween_property(self, "position", TOP_CENTER, 2.0).set_trans(Tween.TRANS_CUBIC).set_delay(1.5)
+		$PhaseTimer.start(4.0)
 
 
 func set_health_bar() -> void:
@@ -45,10 +85,10 @@ func set_health_bar() -> void:
 	else:
 		$AnimationPlayer.play("show_hp")
 	
-	$CanvasLayer/HP/Over.max_value = MAX_HP
-	$CanvasLayer/HP/Over.value = MAX_HP
-	$CanvasLayer/HP/Under.max_value = MAX_HP
-	$CanvasLayer/HP/Under.value = MAX_HP
+	$CanvasLayer/HP/Over.max_value = hp
+	$CanvasLayer/HP/Over.value = hp
+	$CanvasLayer/HP/Under.max_value = hp
+	$CanvasLayer/HP/Under.value = hp
 
 
 func hit(dmg: int = 1) -> void:
@@ -66,3 +106,7 @@ func die() -> void:
 	current_state = STATE.DEAD
 	velocity.y = -GRAVITY / 2
 	$AnimationPlayer.play("hide_hp")
+
+
+func _on_phase_timer_timeout() -> void:
+	next_phase()

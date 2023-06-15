@@ -35,9 +35,9 @@ desitnation = "res://levels/level_3.tscn"
 position = Vector2(784, 320)
 desitnation = "res://levels/level_4.tscn"
 
-[node name="Dragon" parent="." instance=ExtResource("9_bvbl5")]
-position = Vector2(448, 344)
-hp = null
+[node name="Dragon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_bvbl5")]
+position = Vector2(448, 120)
+player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("2_s30e2")]
 position = Vector2(24, 360)
