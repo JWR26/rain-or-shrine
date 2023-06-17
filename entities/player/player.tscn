@@ -1,14 +1,36 @@
-[gd_scene load_steps=22 format=3 uid="uid://c48cyk6sl6a33"]
+[gd_scene load_steps=33 format=3 uid="uid://c48cyk6sl6a33"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_qpbtd"]
 [ext_resource type="Texture2D" uid="uid://doxaf3d65qa1c" path="res://assets/HorusSprite.png" id="2_34omk"]
 [ext_resource type="PackedScene" uid="uid://dehe61p5qpbq1" path="res://entities/player/projectile.tscn" id="2_thhpy"]
 [ext_resource type="Texture2D" uid="uid://c4ctqh3jqycu7" path="res://assets/HorusRunCycle.png" id="3_64a3u"]
+[ext_resource type="Texture2D" uid="uid://o3lh5oifawm8" path="res://assets/HorusAttack-Sheet.png" id="3_mtho1"]
 [ext_resource type="Script" path="res://entities/player/player_animator.gd" id="4_381a6"]
+[ext_resource type="Texture2D" uid="uid://dws38fiw80cnc" path="res://assets/healthbar.png" id="7_u5n65"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1scu8"]
 radius = 16.0
 height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8or7"]
+atlas = ExtResource("3_mtho1")
+region = Rect2(0, 0, 120, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah3wm"]
+atlas = ExtResource("3_mtho1")
+region = Rect2(120, 0, 120, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypwm4"]
+atlas = ExtResource("3_mtho1")
+region = Rect2(240, 0, 120, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tp3w"]
+atlas = ExtResource("3_mtho1")
+region = Rect2(360, 0, 120, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrirh"]
+atlas = ExtResource("3_mtho1")
+region = Rect2(480, 0, 120, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7d4an"]
 atlas = ExtResource("3_64a3u")
@@ -68,6 +90,26 @@ region = Rect2(528, 0, 48, 66)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_544hq"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8or7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah3wm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypwm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tp3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrirh")
+}],
+"loop": false,
+"name": &"cast",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7d4an")
@@ -134,6 +176,35 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4nh3"]
+atlas = ExtResource("7_u5n65")
+region = Rect2(170, 0, 85, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0i80"]
+atlas = ExtResource("7_u5n65")
+region = Rect2(85, 0, 85, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qp8d"]
+atlas = ExtResource("7_u5n65")
+region = Rect2(0, 0, 85, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fvx0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4nh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0i80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qp8d")
+}],
+"loop": false,
+"name": &"Full",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_qpbtd")
 projectile = ExtResource("2_thhpy")
@@ -142,10 +213,13 @@ projectile = ExtResource("2_thhpy")
 shape = SubResource("CapsuleShape2D_1scu8")
 debug_color = Color(0.203922, 0.639216, 0, 0.784314)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("p")]
 sprite_frames = SubResource("SpriteFrames_544hq")
-animation = &"fall"
+animation = &"cast"
+frame = 4
+frame_progress = 1.0
 script = ExtResource("4_381a6")
+p = NodePath("..")
 
 [node name="CastTimer" type="Timer" parent="."]
 process_callback = 0
@@ -153,3 +227,12 @@ wait_time = 0.6
 one_shot = true
 
 [node name="ProjectileContainer" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(32, 32)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_fvx0n")
+animation = &"Full"
+frame = 2

@@ -34,7 +34,3 @@ func physics_update(_delta: float, _dir: Vector2) -> State:
 	
 	return super.physics_update(_delta, _dir)
 
-
-func enter() -> void:
-	if OS.is_debug_build():
-		DebugOverlay.update_current_state("SWIMMING")

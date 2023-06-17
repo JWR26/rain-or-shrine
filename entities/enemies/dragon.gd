@@ -5,7 +5,7 @@ extends Enemy
 const SPEED: float = 149.2
 const CHARGE_SPEED: float = 447.6
 
-const TOP_CENTER = Vector2(427, 128)
+const TOP_CENTER = Vector2(427, 152)
 const BOTTOM_RIGHT = Vector2(800, 340)
 const LEFT = 54
 const RIGHT = 800
@@ -23,7 +23,7 @@ var current_phase: PHASE = PHASE.IDLE
 var tween: Tween
 
 @export var player: Node
-
+@export var projectile: PackedScene
 
 func _ready() -> void:
 	next_phase()
@@ -58,8 +58,11 @@ func _physics_process(delta: float) -> void:
 
 
 func next_phase() -> void:
-	print("next phase")
+	if current_state == STATE.DEAD:
+		return
+	
 	if current_phase == PHASE.IDLE and Globals.all_artifacts_collected():
+		await get_tree().create_timer(3.0).timeout
 		current_phase = PHASE.FIRE_DOWN
 		$PhaseTimer.start(10.0)
 	elif current_phase == PHASE.FIRE_DOWN:
@@ -110,3 +113,17 @@ func die() -> void:
 
 func _on_phase_timer_timeout() -> void:
 	next_phase()
+
+
+func fire_projectile() -> void:
+	var dir = global_position.direction_to(player.get_global_position())
+	var p = projectile.instantiate()
+	p.add_collision_exception_with(self)
+	$ProjectileContainer.add_child(p)
+	p.set_global_position(global_position)
+	p.direction = dir
+
+
+func _on_cast_timer_timeout() -> void:
+	if current_phase == PHASE.FIRE_DOWN:
+		fire_projectile()

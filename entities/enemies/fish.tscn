@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccnsnw0rpk5ci"]
+[gd_scene load_steps=22 format=3 uid="uid://ccnsnw0rpk5ci"]
 
 [ext_resource type="Script" path="res://entities/enemies/fish.gd" id="1_vvmik"]
+[ext_resource type="Texture2D" uid="uid://btvicgn5thr42" path="res://assets/fishattack.png" id="2_4i2f2"]
+[ext_resource type="Texture2D" uid="uid://c4iy81k72s8u0" path="res://assets/fishswim.png" id="3_yyoaa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgk4w"]
 radius = 12.0
@@ -9,7 +11,126 @@ height = 32.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pvqn0"]
 size = Vector2(48, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbe0q"]
+atlas = ExtResource("2_4i2f2")
+region = Rect2(0, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2qjk"]
+atlas = ExtResource("2_4i2f2")
+region = Rect2(72, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wowho"]
+atlas = ExtResource("2_4i2f2")
+region = Rect2(144, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odnc1"]
+atlas = ExtResource("2_4i2f2")
+region = Rect2(216, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nrgq"]
+atlas = ExtResource("2_4i2f2")
+region = Rect2(288, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2jeo"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(0, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va3vl"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(72, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2txdi"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(144, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkp24"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(216, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyd5a"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(288, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a6t4"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(360, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6bob"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(432, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq68p"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(504, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc2dj"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(576, 0, 72, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pp8ih"]
+atlas = ExtResource("3_yyoaa")
+region = Rect2(648, 0, 72, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_61ese"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbe0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2qjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wowho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odnc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nrgq")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2jeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va3vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2txdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkp24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyd5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a6t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6bob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq68p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc2dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pp8ih")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 12.0
+}]
+
 [node name="fish" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_vvmik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,4 +149,16 @@ target_position = Vector2(-96, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_pvqn0")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_61ese")
+animation = &"attack"
+autoplay = "swim"
+frame = 4
+frame_progress = 1.0
+
+[node name="Cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

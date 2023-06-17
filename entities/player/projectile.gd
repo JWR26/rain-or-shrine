@@ -2,7 +2,7 @@ class_name Projectile
 
 extends CharacterBody2D
 
-const SPEED: float = 400.0
+@export var SPEED: float = 400.0
 
 var direction: Vector2 = Vector2.ZERO
 

@@ -4,7 +4,9 @@ extends CharacterBody2D
 
 enum STATE {
 	IDLE,
+	ATTACK,
 	MOVE_TO,
+	COOLDOWN,
 	DEAD,
 }
 

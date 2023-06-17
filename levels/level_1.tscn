@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7nlpwmnc16xa"]
+[gd_scene load_steps=8 format=3 uid="uid://b7nlpwmnc16xa"]
 
 [ext_resource type="Script" path="res://levels/level_1.gd" id="1_6i1gw"]
 [ext_resource type="Texture2D" uid="uid://dvm1bo4onhnym" path="res://assets/Cave.png" id="2_aulqw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://usupq5fhtujf" path="res://entities/artifact/artifact.tscn" id="4_3w53i"]
 [ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="4_qqwoq"]
 [ext_resource type="PackedScene" uid="uid://c1ef6dva8n108" path="res://entities/enemies/cactus_bat.tscn" id="5_q4la6"]
+[ext_resource type="Texture2D" uid="uid://j0vb6yubl70e" path="res://assets/portal.png" id="7_sixyp"]
 
 [node name="Level1" type="Node"]
 script = ExtResource("1_6i1gw")
@@ -19,9 +20,6 @@ centered = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
 polygon = PackedVector2Array(0, 448, 856, 448, 856, 0, 896, 0, 896, 512, -64, 512, -64, 0, 0, 0)
-
-[node name="player" parent="." instance=ExtResource("4_qqwoq")]
-position = Vector2(128, 432)
 
 [node name="Portal" parent="." instance=ExtResource("3_xk8ng")]
 position = Vector2(64, 384)
@@ -127,3 +125,10 @@ position = Vector2(640, 368)
 
 [node name="enemy_one15" parent="." instance=ExtResource("5_q4la6")]
 position = Vector2(720, 384)
+
+[node name="PortalSprite" type="Sprite2D" parent="."]
+position = Vector2(64, 384)
+texture = ExtResource("7_sixyp")
+
+[node name="player" parent="." instance=ExtResource("4_qqwoq")]
+position = Vector2(128, 432)

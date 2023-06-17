@@ -37,9 +37,6 @@ func _physics_process(delta) -> void:
 	if _new_state:
 		change_state(_new_state)
 	
-	if OS.is_debug_build():
-		DebugOverlay.update_player_velocity(velocity)
-	
 	animator.change_direction(input_direction.x)
 	
 	move_and_slide()
@@ -75,8 +72,13 @@ func exited_water() -> void:
 func cast() -> void:
 	var dir = Vector2.LEFT if $AnimatedSprite2D.flip_h else Vector2.RIGHT
 	var p = projectile.instantiate()
+	animator.cast_animation()
 	p.add_collision_exception_with(self)
 	$ProjectileContainer.add_child(p)
-	p.set_global_position(global_position)
+	p.set_global_position(global_position + Vector2(24, -8))
 	p.direction = dir
 	$CastTimer.start(0.6)
+
+
+func knock_back(dir: Vector2) -> void:
+	change_state(Stunned.new(self))

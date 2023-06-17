@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd6vf0ebolmf2"]
+[gd_scene load_steps=10 format=3 uid="uid://dd6vf0ebolmf2"]
 
 [ext_resource type="Script" path="res://levels/level_hub.gd" id="1_ojcw2"]
 [ext_resource type="Texture2D" uid="uid://cxjsxyqr0euh1" path="res://assets/sunshrine.png" id="2_kgg15"]
 [ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="2_s30e2"]
 [ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="3_lpcig"]
+[ext_resource type="Texture2D" uid="uid://bc63rxb0xf5wy" path="res://assets/Artifact01.png" id="6_mp6bd"]
+[ext_resource type="Texture2D" uid="uid://bld7o3rn8t8tf" path="res://assets/Artifact02.png" id="7_c5v4m"]
+[ext_resource type="Texture2D" uid="uid://bd2f5ld0qauge" path="res://assets/Artifact03.png" id="8_6prly"]
+[ext_resource type="Texture2D" uid="uid://buxpurk1rkcit" path="res://assets/Artifact04.png" id="9_2acos"]
 [ext_resource type="PackedScene" uid="uid://xsvwk8cpi1l1" path="res://entities/enemies/dragon.tscn" id="9_bvbl5"]
 
 [node name="Hub" type="Node"]
@@ -34,6 +38,22 @@ desitnation = "res://levels/level_3.tscn"
 [node name="Portal4" parent="." instance=ExtResource("3_lpcig")]
 position = Vector2(784, 320)
 desitnation = "res://levels/level_4.tscn"
+
+[node name="Artifact1" type="Sprite2D" parent="."]
+position = Vector2(120, 328)
+texture = ExtResource("6_mp6bd")
+
+[node name="Artifact2" type="Sprite2D" parent="."]
+position = Vector2(248, 320)
+texture = ExtResource("7_c5v4m")
+
+[node name="Artifact3" type="Sprite2D" parent="."]
+position = Vector2(632, 320)
+texture = ExtResource("8_6prly")
+
+[node name="Artifact4" type="Sprite2D" parent="."]
+position = Vector2(776, 328)
+texture = ExtResource("9_2acos")
 
 [node name="Dragon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_bvbl5")]
 position = Vector2(448, 120)

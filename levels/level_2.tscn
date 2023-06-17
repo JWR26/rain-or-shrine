@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc3qgiot7wsmy"]
+[gd_scene load_steps=7 format=3 uid="uid://dc3qgiot7wsmy"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_wc643"]
+[ext_resource type="Texture2D" uid="uid://cyin52rahqn0g" path="res://assets/forestlevel.png" id="2_4sn8s"]
 [ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="2_ciuhc"]
 [ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="3_4dcl7"]
 [ext_resource type="PackedScene" uid="uid://usupq5fhtujf" path="res://entities/artifact/artifact.tscn" id="4_kkhgy"]
+[ext_resource type="Texture2D" uid="uid://j0vb6yubl70e" path="res://assets/portal.png" id="5_p8cxx"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_wc643")
 level_name = "Untitles World 2"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4sn8s")
+centered = false
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
@@ -27,10 +33,6 @@ polygon = PackedVector2Array(192, -32, 200, 24, 312, 24, 320, -32)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor2"]
 polygon = PackedVector2Array(192, 240, 320, 240, 320, 256, 272, 272, 240, 272, 192, 256)
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Floor2"]
-position = Vector2(256, -160)
-polygon = PackedVector2Array(192, 240, 256, 240, 256, 256, 240, 264, 208, 264, 192, 256)
-
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Floor2"]
 position = Vector2(224, 16)
 polygon = PackedVector2Array(192, 240, 320, 240, 320, 256, 272, 272, 240, 272, 192, 256)
@@ -43,9 +45,13 @@ polygon = PackedVector2Array(192, 240, 320, 240, 320, 256, 272, 272, 240, 272, 1
 position = Vector2(24, 192)
 desitnation = "res://levels/level_hub.tscn"
 
-[node name="player" parent="." instance=ExtResource("3_4dcl7")]
-position = Vector2(64, 232)
-
 [node name="Artifact" parent="." instance=ExtResource("4_kkhgy")]
 position = Vector2(480, 64)
 number = 1
+
+[node name="PortalSprite" type="Sprite2D" parent="."]
+position = Vector2(24, 192)
+texture = ExtResource("5_p8cxx")
+
+[node name="player" parent="." instance=ExtResource("3_4dcl7")]
+position = Vector2(64, 232)

@@ -1,5 +1,7 @@
 extends AnimatedSprite2D
 
+@export var p: Player
+
 
 func change_direction(x_input: float = 0.0) -> void:
 	if x_input < 0:
@@ -16,3 +18,9 @@ func change_animation(to: State) -> void:
 		play("jump")
 	elif to is Falling:
 		play("fall")
+
+
+func cast_animation() -> void:
+	play("cast")
+	await self.animation_finished
+	change_animation(p.current_state)

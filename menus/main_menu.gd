@@ -22,7 +22,5 @@ func _on_play_button_down() -> void:
 		SceneChanger.change_scene(tutorial)
 
 
-
-
 func _on_quit_button_down() -> void:
 	get_tree().quit()
