@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd6vf0ebolmf2"]
+[gd_scene load_steps=13 format=3 uid="uid://dd6vf0ebolmf2"]
 
 [ext_resource type="Script" path="res://levels/level_hub.gd" id="1_ojcw2"]
-[ext_resource type="Texture2D" uid="uid://cxjsxyqr0euh1" path="res://assets/sunshrine.png" id="2_kgg15"]
+[ext_resource type="Texture2D" uid="uid://c0em646e15y11" path="res://assets/sunshrine02.png" id="2_pbtyn"]
 [ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="2_s30e2"]
 [ext_resource type="PackedScene" uid="uid://dlj3ocac35n3h" path="res://entities/portal/portal.tscn" id="3_lpcig"]
+[ext_resource type="Texture2D" uid="uid://ctuvewessfpsg" path="res://assets/destroyedpedestal.png" id="4_bda4n"]
+[ext_resource type="Texture2D" uid="uid://j0vb6yubl70e" path="res://assets/portal.png" id="5_lynee"]
+[ext_resource type="Texture2D" uid="uid://kcqlgo10yhqk" path="res://assets/restoredpedestal.png" id="5_q1woq"]
 [ext_resource type="Texture2D" uid="uid://bc63rxb0xf5wy" path="res://assets/Artifact01.png" id="6_mp6bd"]
 [ext_resource type="Texture2D" uid="uid://bld7o3rn8t8tf" path="res://assets/Artifact02.png" id="7_c5v4m"]
 [ext_resource type="Texture2D" uid="uid://bd2f5ld0qauge" path="res://assets/Artifact03.png" id="8_6prly"]
@@ -15,7 +18,7 @@ script = ExtResource("1_ojcw2")
 level_name = "The Shrine"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_kgg15")
+texture = ExtResource("2_pbtyn")
 centered = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -39,20 +42,72 @@ desitnation = "res://levels/level_3.tscn"
 position = Vector2(784, 320)
 desitnation = "res://levels/level_4.tscn"
 
+[node name="Destroyedpedestal" type="Sprite2D" parent="."]
+position = Vector2(104, 312)
+texture = ExtResource("4_bda4n")
+
+[node name="Destroyedpedestal2" type="Sprite2D" parent="."]
+position = Vector2(232, 296)
+texture = ExtResource("4_bda4n")
+
+[node name="Destroyedpedestal3" type="Sprite2D" parent="."]
+position = Vector2(640, 296)
+texture = ExtResource("4_bda4n")
+flip_h = true
+
+[node name="Destroyedpedestal4" type="Sprite2D" parent="."]
+position = Vector2(776, 312)
+texture = ExtResource("4_bda4n")
+flip_h = true
+
+[node name="PortalSprite" type="Sprite2D" parent="."]
+position = Vector2(96, 288)
+texture = ExtResource("5_lynee")
+
+[node name="PortalSprite2" type="Sprite2D" parent="."]
+position = Vector2(224, 272)
+texture = ExtResource("5_lynee")
+
+[node name="PortalSprite3" type="Sprite2D" parent="."]
+position = Vector2(648, 264)
+texture = ExtResource("5_lynee")
+flip_h = true
+
+[node name="PortalSprite4" type="Sprite2D" parent="."]
+position = Vector2(784, 288)
+texture = ExtResource("5_lynee")
+flip_h = true
+
+[node name="Restoredpedestal" type="Sprite2D" parent="."]
+position = Vector2(104, 344)
+texture = ExtResource("5_q1woq")
+
+[node name="Restoredpedestal2" type="Sprite2D" parent="."]
+position = Vector2(232, 320)
+texture = ExtResource("5_q1woq")
+
+[node name="Restoredpedestal3" type="Sprite2D" parent="."]
+position = Vector2(640, 328)
+texture = ExtResource("5_q1woq")
+
+[node name="Restoredpedestal4" type="Sprite2D" parent="."]
+position = Vector2(776, 344)
+texture = ExtResource("5_q1woq")
+
 [node name="Artifact1" type="Sprite2D" parent="."]
-position = Vector2(120, 328)
+position = Vector2(104, 312)
 texture = ExtResource("6_mp6bd")
 
 [node name="Artifact2" type="Sprite2D" parent="."]
-position = Vector2(248, 320)
+position = Vector2(232, 288)
 texture = ExtResource("7_c5v4m")
 
 [node name="Artifact3" type="Sprite2D" parent="."]
-position = Vector2(632, 320)
+position = Vector2(640, 296)
 texture = ExtResource("8_6prly")
 
 [node name="Artifact4" type="Sprite2D" parent="."]
-position = Vector2(776, 328)
+position = Vector2(776, 312)
 texture = ExtResource("9_2acos")
 
 [node name="Dragon" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_bvbl5")]
@@ -61,3 +116,5 @@ player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("2_s30e2")]
 position = Vector2(24, 360)
+
+[connection signal="body_entered" from="Portal1" to="." method="_on_portal_1_body_entered"]

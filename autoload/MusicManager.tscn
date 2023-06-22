@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ruaq0v7kylkj"]
+
+[ext_resource type="Script" path="res://autoload/MusicManager.gd" id="1_uq2dq"]
+[ext_resource type="AudioStream" uid="uid://cp8vxr8b5xtiv" path="res://assets/audio/background_rain.wav" id="2_iqfo8"]
+[ext_resource type="AudioStream" uid="uid://crl5ra766713w" path="res://assets/audio/battle.wav" id="3_e65gn"]
+[ext_resource type="AudioStream" uid="uid://swccnghnkf34" path="res://assets/audio/ending.wav" id="4_13jf4"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_uq2dq")
+
+[node name="Rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_iqfo8")
+autoplay = true
+
+[node name="Battle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_e65gn")
+
+[node name="Ending" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_13jf4")

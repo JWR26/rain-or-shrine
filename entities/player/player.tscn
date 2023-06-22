@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c48cyk6sl6a33"]
+[gd_scene load_steps=36 format=3 uid="uid://c48cyk6sl6a33"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_qpbtd"]
 [ext_resource type="Texture2D" uid="uid://doxaf3d65qa1c" path="res://assets/HorusSprite.png" id="2_34omk"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://o3lh5oifawm8" path="res://assets/HorusAttack-Sheet.png" id="3_mtho1"]
 [ext_resource type="Script" path="res://entities/player/player_animator.gd" id="4_381a6"]
 [ext_resource type="Texture2D" uid="uid://dws38fiw80cnc" path="res://assets/healthbar.png" id="7_u5n65"]
+[ext_resource type="AudioStream" uid="uid://bqfwl23ykqk81" path="res://assets/audio/spell_cast.wav" id="8_2okgq"]
+[ext_resource type="AudioStream" uid="uid://d1vbuxo7fcpec" path="res://assets/audio/horus_hit.wav" id="9_feawx"]
+[ext_resource type="AudioStream" uid="uid://djf7iiuuyn4hg" path="res://assets/audio/bug_impact.wav" id="10_ud5ba"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1scu8"]
 radius = 16.0
@@ -228,11 +231,20 @@ one_shot = true
 
 [node name="ProjectileContainer" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="Node" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+[node name="Health" type="AnimatedSprite2D" parent="CanvasLayer"]
 position = Vector2(32, 32)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_fvx0n")
 animation = &"Full"
 frame = 2
+
+[node name="CastSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2okgq")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_feawx")
+
+[node name="BugImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ud5ba")

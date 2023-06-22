@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://xsvwk8cpi1l1"]
+[gd_scene load_steps=13 format=3 uid="uid://xsvwk8cpi1l1"]
 
 [ext_resource type="Texture2D" uid="uid://b0hxa3f71up7k" path="res://assets/dragonhead.png" id="1_a3mtn"]
 [ext_resource type="Script" path="res://entities/enemies/dragon.gd" id="1_gxnbh"]
 [ext_resource type="PackedScene" uid="uid://c4skprbeawdfm" path="res://entities/enemies/dragon_projectile.tscn" id="2_papta"]
 [ext_resource type="Texture2D" uid="uid://c0fvfm87ailss" path="res://assets/dragon_health_progress2.png" id="4_bc06g"]
 [ext_resource type="Texture2D" uid="uid://b53mcjdkmi4ve" path="res://assets/dragon_health_progress.png" id="4_h6g5r"]
+[ext_resource type="AudioStream" uid="uid://6va4psart56j" path="res://assets/audio/thunder_cast.wav" id="6_84mb1"]
+[ext_resource type="AudioStream" uid="uid://d1moo246qk726" path="res://assets/audio/dragon_roar.wav" id="7_4nrdo"]
+[ext_resource type="AudioStream" uid="uid://ci22bomwroch6" path="res://assets/audio/dragon_hit.wav" id="8_3lwq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i40wj"]
 radius = 40.0
@@ -105,8 +108,16 @@ libraries = {
 
 [node name="CastTimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 0.75
 autostart = true
+
+[node name="CastSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_84mb1")
+
+[node name="Roar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4nrdo")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_3lwq3")
 
 [connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="timeout" from="CastTimer" to="." method="_on_cast_timer_timeout"]

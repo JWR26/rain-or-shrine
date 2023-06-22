@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://hjhest8v4l4t"]
+
+[ext_resource type="Script" path="res://entities/enemies/bug.gd" id="1_blrl1"]
+[ext_resource type="Texture2D" uid="uid://42b8fcqym8x" path="res://assets/bugenemy.png" id="1_dvx18"]
+
+[node name="Bug" type="CharacterBody2D"]
+script = ExtResource("1_blrl1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dvx18")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-24, 16, -24, 0, -8, -16, 8, -16, 24, 0, 24, 16)
+
+[node name="Left" type="RayCast2D" parent="."]
+position = Vector2(-24, 0)
+
+[node name="Right" type="RayCast2D" parent="."]
+position = Vector2(24, 0)

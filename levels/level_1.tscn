@@ -117,14 +117,8 @@ position = Vector2(696, 144)
 [node name="enemy_one12" parent="." instance=ExtResource("5_q4la6")]
 position = Vector2(760, 168)
 
-[node name="enemy_one13" parent="." instance=ExtResource("5_q4la6")]
-position = Vector2(816, 192)
-
 [node name="enemy_one14" parent="." instance=ExtResource("5_q4la6")]
 position = Vector2(640, 368)
-
-[node name="enemy_one15" parent="." instance=ExtResource("5_q4la6")]
-position = Vector2(720, 384)
 
 [node name="PortalSprite" type="Sprite2D" parent="."]
 position = Vector2(64, 384)

@@ -1,7 +1,48 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0aslsv2cphrp"]
+[gd_scene load_steps=9 format=3 uid="uid://d0aslsv2cphrp"]
 
-[ext_resource type="Script" path="res://levels/level.gd" id="1_5o6yk"]
+[ext_resource type="Script" path="res://levels/level_victory.gd" id="1_t28qj"]
+[ext_resource type="Texture2D" uid="uid://17geybxhlvsi" path="res://assets/victory.png" id="2_mfu1c"]
+[ext_resource type="Texture2D" uid="uid://bc63rxb0xf5wy" path="res://assets/Artifact01.png" id="3_7i4p8"]
+[ext_resource type="Texture2D" uid="uid://bld7o3rn8t8tf" path="res://assets/Artifact02.png" id="4_fapvg"]
+[ext_resource type="Texture2D" uid="uid://bd2f5ld0qauge" path="res://assets/Artifact03.png" id="5_k0itm"]
+[ext_resource type="Texture2D" uid="uid://buxpurk1rkcit" path="res://assets/Artifact04.png" id="6_ek5it"]
+[ext_resource type="Texture2D" uid="uid://c572syl8olcvr" path="res://assets/characters.png" id="8_aa046"]
+[ext_resource type="Texture2D" uid="uid://doxaf3d65qa1c" path="res://assets/HorusSprite.png" id="8_cs072"]
 
 [node name="LevelVictory" type="Node"]
-script = ExtResource("1_5o6yk")
-level_name = "Victory"
+script = ExtResource("1_t28qj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mfu1c")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-16, 384, 872, 384, 872, 0, 960, 0, 960, 512, -64, 512, -64, 0, -16, 0)
+
+[node name="Artifact1" type="Sprite2D" parent="."]
+position = Vector2(120, 312)
+texture = ExtResource("3_7i4p8")
+
+[node name="Artifact2" type="Sprite2D" parent="."]
+position = Vector2(240, 288)
+texture = ExtResource("4_fapvg")
+
+[node name="Artifact3" type="Sprite2D" parent="."]
+position = Vector2(648, 288)
+texture = ExtResource("5_k0itm")
+
+[node name="Artifact4" type="Sprite2D" parent="."]
+position = Vector2(768, 312)
+texture = ExtResource("6_ek5it")
+
+[node name="SunGod" type="Sprite2D" parent="."]
+position = Vector2(480, 352)
+texture = ExtResource("8_aa046")
+region_enabled = true
+region_rect = Rect2(123, 31, 41, 59)
+
+[node name="HorusSprite" type="Sprite2D" parent="."]
+position = Vector2(392, 360)
+texture = ExtResource("8_cs072")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://pspflgspip20"]
+
+[ext_resource type="Texture2D" uid="uid://bppt6sq77eiu" path="res://assets/ProjectileFX.png" id="1_lmd5o"]
+[ext_resource type="Script" path="res://entities/player/castfx.gd" id="2_4e0kw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsajc"]
+atlas = ExtResource("1_lmd5o")
+region = Rect2(0, 0, 56, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rlql"]
+atlas = ExtResource("1_lmd5o")
+region = Rect2(56, 0, 56, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1bwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsajc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rlql")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="PlayerCastFX" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_u1bwr")
+autoplay = "default"
+frame = 1
+frame_progress = 1.0
+script = ExtResource("2_4e0kw")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

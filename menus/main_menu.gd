@@ -3,11 +3,9 @@ extends Control
 
 @export var tutorial: String
 @export var hub: String
-@export var option_menu: String
 
 @onready var play_button = $VSplitContainer/VBoxContainer/MarginContainer/Play
-@onready var option_button = $VSplitContainer/VBoxContainer/MarginContainer2/Options
-@onready var quit_button = $VSplitContainer/VBoxContainer/MarginContainer3/Quit
+
 
 
 func _ready() -> void:
@@ -22,5 +20,5 @@ func _on_play_button_down() -> void:
 		SceneChanger.change_scene(tutorial)
 
 
-func _on_quit_button_down() -> void:
-	get_tree().quit()
+func _on_credits_meta_clicked(meta) -> void:
+	OS.shell_open(meta)

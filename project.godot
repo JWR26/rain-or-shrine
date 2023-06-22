@@ -19,11 +19,14 @@ config/icon="res://icon.svg"
 
 SceneChanger="*res://autoload/scene_changer.tscn"
 Globals="*res://autoload/globals.gd"
+MusicManager="*res://autoload/MusicManager.tscn"
+DialogueOverlay="*res://autoload/dialogue_overlay.tscn"
 
 [display]
 
 window/size/viewport_width=854
 window/size/viewport_height=480
+window/size/borderless=true
 
 [input]
 

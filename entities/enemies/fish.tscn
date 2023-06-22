@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://ccnsnw0rpk5ci"]
+[gd_scene load_steps=23 format=3 uid="uid://ccnsnw0rpk5ci"]
 
 [ext_resource type="Script" path="res://entities/enemies/fish.gd" id="1_vvmik"]
 [ext_resource type="Texture2D" uid="uid://btvicgn5thr42" path="res://assets/fishattack.png" id="2_4i2f2"]
 [ext_resource type="Texture2D" uid="uid://c4iy81k72s8u0" path="res://assets/fishswim.png" id="3_yyoaa"]
+[ext_resource type="AudioStream" uid="uid://bumqn3y07g1at" path="res://assets/audio/fish_bite.wav" id="4_2kxrd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sgk4w"]
 radius = 12.0
@@ -91,7 +92,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -138,12 +139,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sgk4w")
 debug_color = Color(0.945098, 0, 0, 0.419608)
 
-[node name="PlayerSensorRight" type="RayCast2D" parent="."]
-target_position = Vector2(96, 0)
-
-[node name="PlayerSensorLeft" type="RayCast2D" parent="."]
-target_position = Vector2(-96, 0)
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -156,9 +151,7 @@ autoplay = "swim"
 frame = 4
 frame_progress = 1.0
 
-[node name="Cooldown" type="Timer" parent="."]
-process_callback = 0
-wait_time = 3.0
+[node name="Bite" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2kxrd")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

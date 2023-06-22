@@ -7,8 +7,7 @@ enum DIR{
 	LEFT,
 }
 
-const SWIM_SPEED: float = 25.0
-const ATTACK_SPEED: float = 125.0
+const SWIM_SPEED: float = 50.0
 
 @export var start_direction: DIR
 
@@ -22,14 +21,7 @@ func _physics_process(delta: float) -> void:
 	if current_state == STATE.DEAD:
 		velocity.y += GRAVITY * delta
 	else:
-		var left = $PlayerSensorLeft.get_collider()
-		var right = $PlayerSensorRight.get_collider()
-		if (left is Player or right is Player) and current_state != STATE.ATTACK:
-			current_state = STATE.ATTACK
-			direction = Vector2.LEFT if left is Player else Vector2.RIGHT
-		else:
-			current_state = STATE.IDLE
-		velocity = ATTACK_SPEED * direction if current_state == STATE.ATTACK else SWIM_SPEED * direction
+		velocity = SWIM_SPEED * direction
 	
 	$AnimatedSprite2D.flip_h = true if direction.x > 0 else false
 	
@@ -46,15 +38,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 	
 	if body is Player:
-		$PlayerSensorLeft.enabled = false
-		$PlayerSensorRight.enabled = false
-		$Cooldown.start(3.0)
+		$Bite.play()
+		direction.x = position.direction_to(body.global_position).x
 		$AnimatedSprite2D.play("attack")
 		await $AnimatedSprite2D.animation_finished
+		body.knock_back(global_position.x, 0.5, true)
 		$AnimatedSprite2D.play("swim")
-	
-	current_state = STATE.IDLE
-
 
 func die() -> void:
 	$CollisionShape2D.disabled = true
@@ -63,7 +52,3 @@ func die() -> void:
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.flip_v = true
 
-
-func _on_cooldown_timeout() -> void:
-	$PlayerSensorLeft.enabled = true
-	$PlayerSensorRight.enabled = true

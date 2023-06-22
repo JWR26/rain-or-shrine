@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4skprbeawdfm"]
+[gd_scene load_steps=5 format=3 uid="uid://c4skprbeawdfm"]
 
 [ext_resource type="Script" path="res://entities/player/projectile.gd" id="1_nxpiy"]
 [ext_resource type="Texture2D" uid="uid://8jjpbejmhahd" path="res://assets/projectile_dragon.png" id="2_6k4g7"]
+[ext_resource type="PackedScene" uid="uid://csc60krmi3vqh" path="res://entities/enemies/dragon_fx.tscn" id="2_mnnh0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5tu1p"]
 radius = 16.0
 
 [node name="projectile" type="CharacterBody2D"]
 script = ExtResource("1_nxpiy")
+fx = ExtResource("2_mnnh0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_6k4g7")

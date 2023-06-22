@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhat6ue6kdooe"]
+
+[ext_resource type="Script" path="res://autoload/dialogue_overlay.gd" id="1_w8m38"]
+
+[node name="DialogueOverlay" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_w8m38")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Top" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Middle" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="Bottom" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true

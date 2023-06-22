@@ -1,10 +1,10 @@
 extends Node
 
 
-var artifact_1_collected: bool = true
-var artifact_2_collected: bool = true
-var artifact_3_collected: bool = true
-var artifact_4_collected: bool = true
+var artifact_1_collected: bool = false
+var artifact_2_collected: bool = false
+var artifact_3_collected: bool = false
+var artifact_4_collected: bool = false
 
 var tutorial_complete: bool = false
 

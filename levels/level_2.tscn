@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dc3qgiot7wsmy"]
+[gd_scene load_steps=8 format=3 uid="uid://dc3qgiot7wsmy"]
 
 [ext_resource type="Script" path="res://levels/level_2.gd" id="1_wc643"]
 [ext_resource type="Texture2D" uid="uid://cyin52rahqn0g" path="res://assets/forestlevel.png" id="2_4sn8s"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c48cyk6sl6a33" path="res://entities/player/player.tscn" id="3_4dcl7"]
 [ext_resource type="PackedScene" uid="uid://usupq5fhtujf" path="res://entities/artifact/artifact.tscn" id="4_kkhgy"]
 [ext_resource type="Texture2D" uid="uid://j0vb6yubl70e" path="res://assets/portal.png" id="5_p8cxx"]
+[ext_resource type="PackedScene" uid="uid://hjhest8v4l4t" path="res://entities/enemies/bug.tscn" id="7_iwa67"]
 
 [node name="Level2" type="Node"]
 script = ExtResource("1_wc643")
@@ -55,3 +56,21 @@ texture = ExtResource("5_p8cxx")
 
 [node name="player" parent="." instance=ExtResource("3_4dcl7")]
 position = Vector2(64, 232)
+
+[node name="Bug" parent="." instance=ExtResource("7_iwa67")]
+position = Vector2(296, 224)
+
+[node name="Bug2" parent="." instance=ExtResource("7_iwa67")]
+position = Vector2(448, 240)
+
+[node name="Bug3" parent="." instance=ExtResource("7_iwa67")]
+position = Vector2(704, 160)
+
+[node name="Bug4" parent="." instance=ExtResource("7_iwa67")]
+position = Vector2(640, 432)
+
+[node name="Bug5" parent="." instance=ExtResource("7_iwa67")]
+position = Vector2(416, 432)
+
+[node name="Bug6" parent="." instance=ExtResource("7_iwa67")]
+position = Vector2(192, 432)

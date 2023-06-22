@@ -10,6 +10,7 @@ var current_state: State = Idle.new(self)
 
 @onready var animator: AnimatedSprite2D = $AnimatedSprite2D
 
+var hp: int = 3
 
 func _unhandled_input(event) -> void:
 	if Input.is_action_just_pressed("cast") and $CastTimer.is_stopped():
@@ -44,10 +45,11 @@ func _physics_process(delta) -> void:
 	var collision = get_last_slide_collision()
 	if collision:
 		var collider = collision.get_collider()
-		var above: bool = true if collider.get_position().y > position.y + 8 else false
-		if collider is CactusBat and above:
-			collider.die()
-			velocity.y = State.JUMP_SPEED / 2.0
+		if collider is Bug:
+			$BugImpact.play()
+			knock_back(collider.global_position.x, 0.6)
+		elif collider is Platform:
+			collider.set_active()
 
 
 ## Handles the transition from one [State] to another. First, the [method State.exit] method of the [member current_state] is called and then freed from memory. 
@@ -77,8 +79,23 @@ func cast() -> void:
 	$ProjectileContainer.add_child(p)
 	p.set_global_position(global_position + Vector2(24, -8))
 	p.direction = dir
+	$CastSFX.play()
 	$CastTimer.start(0.6)
 
 
-func knock_back(dir: Vector2) -> void:
-	change_state(Stunned.new(self))
+func knock_back(dir: float, factor: float = 1, in_water: bool = false) -> void:
+	$Hit.play()
+	hp -= 1
+	if hp < 1:
+		$CollisionShape2D.disabled = true
+		$CanvasLayer/Health.hide()
+		MusicManager.battle.stop()
+		SceneChanger.change_scene("res://levels/level_tutorial.tscn", 2.0)
+	else:
+		$CanvasLayer/Health.set_frame_and_progress(hp-1, 0.0)
+	
+	var d = clamp(global_position.x - dir, -1, 1)
+	change_state(Stunned.new(self, d, factor, in_water))
+
+func disable_collision() -> void:
+	$CollisionShape2D.disabled = true

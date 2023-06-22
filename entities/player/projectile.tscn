@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dehe61p5qpbq1"]
+[gd_scene load_steps=5 format=3 uid="uid://dehe61p5qpbq1"]
 
 [ext_resource type="Script" path="res://entities/player/projectile.gd" id="1_wo1pu"]
+[ext_resource type="PackedScene" uid="uid://pspflgspip20" path="res://entities/player/PlayerCastFX.tscn" id="2_3lrsb"]
 [ext_resource type="Texture2D" uid="uid://cvr0uao18vwg7" path="res://assets/projectile.png" id="2_imvpn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5tu1p"]
@@ -8,6 +9,7 @@ radius = 8.0
 
 [node name="projectile" type="CharacterBody2D"]
 script = ExtResource("1_wo1pu")
+fx = ExtResource("2_3lrsb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_imvpn")
